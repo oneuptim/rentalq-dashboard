@@ -8,7 +8,7 @@
     <meta name="keyword" content="slick, flat, dashboard, bootstrap, admin, template, theme, responsive, fluid, retina">
     <link rel="shortcut icon" href="javascript:;" type="image/png">
 
-    <title>Rental Q - Process Rental Application Fast!</title>
+    <title>Applications | Rental Q | Process Rental Application Fast!</title>
 
     <!--right slidebar-->
     <link href="css/slidebars.css" rel="stylesheet">
@@ -60,16 +60,16 @@
                   <li>
                       <h3 class="navigation-title">Navigation</h3>
                   </li>
-                  <li class="active">
-                    <a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a>
+                  <li class="menu">
+                    <a href="dashboard.html"><i class="fa fa-home"></i> <span>Dashboard</span></a>
                   </li>
 
-                  <li class="menu">
+                  <li class="active">
                     <a href=""><i class="fa fa-file-text-o"></i> <span>Applications</span></a>
                   </li>
 
                   <li class="menu">
-                      <a href=""><i class="fa fa-users"></i>  <span>Tenants</span></a>
+                      <a href="tenants.html"><i class="fa fa-users"></i>  <span>Tenants</span></a>
                   </li>
 
                   <li class="menu-list"><a href="javascript:;"><i class="fa fa-envelope-o"></i> <span>Messages <span class="label noti-arrow bg-danger pull-right">4 Unread</span> </span></a>
@@ -548,10 +548,14 @@
                 </h3>
                 <!--<span class="sub-title">Welcome to Static Table</span>-->
                 <div class="state-information">
-                    <ol class="breadcrumb m-b-less bg-less">
-                        <li><a href="#">Home</a></li>
-                        <li class="active"><a href="#">Applications</a></li>
-                    </ol>
+                    <div class="state-graph">
+                        <div id="balance" class="chart"></div>
+                        <div class="info">Commissions $ 2,317</div>
+                    </div>
+                    <div class="state-graph">
+                        <div id="item-sold" class="chart"></div>
+                        <div class="info">Applications 203</div>
+                    </div>
                 </div>
             </div>
             <!-- page head end-->
