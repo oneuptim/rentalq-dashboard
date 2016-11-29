@@ -15,7 +15,7 @@ $(document).ready(function(){
             html_string += '<h2>' + content_id + " " + title + '</h2>';
             html_string += '<p>' + description + '</p>'
 
-            $('.api-data').append(html_string);
+            $('.api-data').prepend(html_string);
 
 
         console.log('I am the description', description);
@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 
   $('#appBtn').click(function(){
-    $('tbody').append(`<tr><td>11/27/2016</td><td>Las Vegas, NV</td><td>Timothy Maina</td><td>3045 Cobble Creek Court, Las Vegas NV 89108</td><td>$1,000</td><td>Completed</td><td>Processing</td></tr>`);
+    $('tbody').prepend(`<tr><td>12/27/2016</td><td>Las Vegas, NV</td><td>Timothy Maina</td><td>3045 Cobble Creek Court, Las Vegas NV 89108</td><td>$1,000</td><td>Completed</td><td>Processing</td></tr>`);
 
         console.log("Test Application is working!");
 
