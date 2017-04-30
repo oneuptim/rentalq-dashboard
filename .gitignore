@@ -27,7 +27,7 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+*node_modules
 jspm_packages
 
 # Optional npm cache directory
@@ -71,4 +71,3 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
-
