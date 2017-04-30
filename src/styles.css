@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+body, h1, h2, h3, h4, h5, h6, p, panel-heading {
+  font-family: "proxima-nova",sans-serif;
+  }
+
+
+.sidebar {
+  position: fixed;
+}

@@ -1,0 +1,319 @@
+<div class="nav-side-menu">
+    <div class="brand">Rental Q</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            <li class="active">
+                <a href="/dashboard">
+                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="/rental-checks">
+                    <i class="fa fa-archive fa-lg"></i> Rental Checks
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive fa-lg"></i> Archives
+                </a>
+            </li>
+            <li>
+                <a href="/profile">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- BODY SECTION  -->
+
+<div class="container" id="main">
+  <div class="col-md-5">
+    <form (ngModel)="submitRentalCheck">
+    <!-- Tenancy Period   -->
+    <h2>Tenant Check - Agency Form</h2>
+    <div class="panel panel-default">
+      <div class="panel-heading">Tenancy</div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label class="paragraph">Period of tenancy</label>
+          <label class="control-label" for="date">Date</label>
+          <input type="date" class="form-control" id="exampleInputEmail1" placeholder="Enter period of tenancy">
+          <p>End</p>
+          <input type="date" class="form-control" id="exampleInputEmail1" placeholder="Enter period of tenancy">
+        </div>
+
+        <!-- Listed on lease   -->
+        <div class= "form-group">
+          <label class="paragraph">Was the tenant listed as a lessee?</label>
+          <label class="radio-inline">
+            <input type="radio" value="true" name="listed_on_lease">Yes
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="false" name="listed_on_lease">No
+          </label>
+        </div>
+        <!-- Number of Occupants   -->
+        <div class="form-group">
+          <label for="exampleInputEmail1">Number of occupants in the property</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter number of occupants">
+        </div>
+
+        <!-- Tenancy Break Lease?   -->
+        <label class="paragraph">Is this a Break Lease?</label>
+        <label class="radio-inline">
+          <input type="radio" value="true" name="break_lease">Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" value="false" name="break_lease">No
+        </label>
+      </div>
+    </div>
+
+    <!-- Weekly Rent   -->
+    <div class="panel panel-default">
+      <div class="panel-heading">Rent amount</div>
+      <div class="panel-body">
+          <div class="form-group">
+            <label class="paragraph">Enter weekly rent amount</label>
+            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="E.g. 4000">
+          </div>
+          <div class="form-group">
+            <!-- Rent Payment   -->
+            <label class="paragraph">Was the rent paid on time?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="rent_on_time">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="rent_on_time">No
+            </label>
+          </div>
+          <div class="form-group">
+          <!-- Arrears   -->
+          <label class="paragraph">During the tenancy, was the tenant ever in arrears?</label>
+          <label class="radio-inline">
+            <input type="radio" value="true" name="arrears">Yes
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="false" name="arrears">No
+          </label>
+        </div>
+      </div>
+      </div>
+
+
+      <!-- Pets   -->
+      <div class="panel panel-default">
+        <div class="panel-heading">Pets</div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label class="paragraph">Were pets kept on the premises?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="pets_present">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="pets_present">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Pets damages details -->
+            <label for="exampleInputEmail1">If yes, any damage/disruption etc?</label>
+            <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+          </div>
+
+          <div class="form-group">
+            <!-- Pets Approved? -->
+            <label class="paragraph">Were the pets approved?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="pets_approved">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="pets_approved">No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notice to Remedy -->
+      <div class="panel panel-default">
+        <div class="panel-heading">Notice to Remedy</div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label class="paragraph">Did the tenant receive any Notice to Remedy’s?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="remedy_notice">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="remedy_notice">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Notice to Remedy details -->
+            <label for="exampleInputEmail1">If yes, reason and number of notice to remedy?</label>
+            <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+          </div>
+
+          <div class="form-group">
+            <!-- Routine Inspection -->
+            <label class="paragraph">Did your agency carry out routine inspections?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="routine_inspection">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="routine_inspection">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Notice to Remedy details -->
+            <label for="exampleInputEmail1">How was the property presented for last inspection?</label>
+            <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lawn maintenance -->
+      <div class="panel panel-default">
+        <div class="panel-heading">Maintenance</div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label class="paragraph">Were lawns maintained?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="lawns_maintained">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="lawns_maintained">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Damage -->
+            <label class="paragraph">Was there any damage?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="any_damage">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="any_damage">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Bond Refunded -->
+            <label class="paragraph">Was the bond refunded in full?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="bond_refunded">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="bond_refunded">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Notice to Remedy details -->
+            <label for="exampleInputEmail1">If not, reason why</label>
+            <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Condition -->
+      <div class="panel panel-default">
+        <div class="panel-heading">Property Condition</div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label class="paragraph">Did the tenant leave the property clean and tidy?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="property_clean">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="property_clean">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Disputes-->
+            <label class="paragraph">Were their any disputes you had to handle?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="any_disputes">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="any_disputes">No
+            </label>
+          </div>
+
+          <div class="">
+            <!-- Disputes details -->
+            <label for="exampleInputEmail1"> If yes, brief details.</label>
+            <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+          </div>
+
+          <div class="form-group">
+            <!-- Disputes-->
+            <label class="paragraph">Have there been any complaints lodged from the neighbours?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="any_complaints">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="any_complaints">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Rent again in future -->
+            <label class="paragraph">Would you rent to the tenant again?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="rent_again">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="rent_again">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Vacating details -->
+            <label for="exampleInputEmail1">Why is the tenant vacating the property?</label>
+            <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Reason for terminating tenancy -->
+      <div class="panel panel-default">
+        <div class="panel-heading">Reason for terminating tenancy</div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label class="paragraph">Did your Agency terminate the tenancy?</label>
+            <label class="radio-inline">
+              <input type="radio" value="true" name="terminate_tenancy">Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="false" name="terminate_tenancy">No
+            </label>
+          </div>
+
+          <div class="form-group">
+            <!-- Additional Comments -->
+            <label for="exampleInputEmail1">Additional comments</label>
+            <textarea name="" class="form-control" id="" cols="30" rows="5"></textarea>
+          </div>
+
+          <div class="form-group">
+            <!-- Inline checkboxes -->
+            <label class="checkbox-custom inline check-success">
+            <input type="checkbox" value=" " id="checkbox-100"> <label for="checkbox-100">Certify that all information provide is true</label>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success full"><span class="glyphicons glyphicons-check"></span> Complete Rental Check</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

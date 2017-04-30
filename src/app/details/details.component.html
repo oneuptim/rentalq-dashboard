@@ -1,0 +1,426 @@
+<div class="nav-side-menu">
+    <div class="brand">Rental Q</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+            <li class="active">
+                <a href="/dashboard">
+                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="/rental-checks">
+                    <i class="fa fa-archive fa-lg"></i> Rental Checks
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive fa-lg"></i> Archives
+                </a>
+            </li>
+            <li>
+                <a href="/profile">
+                    <i class="fa fa-user fa-lg"></i> Profile
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- BODY SECTION  -->
+
+<div class="container" id="main">
+
+    <ul class="app-menu" data-spy="affix" data-offset-top="197">
+      <li><a href="#"><i class="fa fa-user fa-lg"></i> Personal Info</a></li>
+      <li><a href="#">Rental History</a></li>
+      <li><a href="#">Occupants</a></li>
+      <li><a href="#income">Income</a></li>
+      <li><a href="#">Emergency</a></li>
+    </ul>
+
+<!-- <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
+<ul class="nav navbar-nav">
+  <li class="active"><a href="#">Basic Topnav</a></li>
+  <li><a href="#">Page 1</a></li>
+  <li><a href="#">Page 2</a></li>
+  <li><a href="#">Page 3</a></li>
+</ul>
+</nav> -->
+
+  <div class="row">
+    <div class="col-md-6">
+      <!-- <h1>Application Details</h1> -->
+
+      <!-- PERSONAL DETAILS -->
+      <div class="panel panel-primary">
+        <div class="panel-heading"><span class="glyphicon glyphicon-user"></span> Personal Information</div>
+        <div class="panel-body">
+          <div class="col-md-6">
+            <strong>Full Name</strong>
+            <p>{{applicant.firstName}} {{applicant.lastName}}</p>
+
+            <strong>Gender</strong>
+            <p>{{applicant.gender}}</p>
+
+            <strong>Marital Staus</strong>
+            <p>{{applicant.maritalStatus}}</p>
+
+          </div>
+          <div class="col-md-6">
+            <strong>Phone Number</strong>
+            <p>{{applicant.phoneNumber}}</p>
+
+            <strong>Date of Birth</strong>
+            <p>{{applicant.dateOfBirth}}</p>
+
+            <strong>Smoking Habits</strong>
+            <p>{{applicant.smokingHabits}}</p>
+          </div>
+
+          <div class="col-md-12">
+            <h4>Applicant's Summary</h4>
+            <p>
+              {{applicant.bio}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- RENTAL HISTORY ADDRESSES -->
+      <div class="panel panel-primary" >
+        <div class="panel-heading">Rental History</div>
+        <div class="panel-body" *ngFor="let address of rentalhistory; let i=index">
+          <ng-template [ngIf]="i < 2">
+          <div class="col-md-9">
+            <h4>
+              {{address.streetAddress}} {{address.unitNumber}}
+            {{address.city }}, {{address.state}} {{address.postCode}}
+            </h4>
+          </div>
+          <div class="col-md-3">
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Rental Check</button>
+          </div>
+          <div class="col-md-6">
+            <strong>Lived here</strong>
+            {{ address.moveInDate | date:'dd/MM/yyyy' }} - {{ address.moveOutDate | date:'dd/MM/yyyy' }}
+          </div>
+          <div class="col-md-6">
+            <strong>Paid</strong>
+            <p>${{address.rentAmount}}/mo</p>
+          </div>
+
+          <hr>
+
+          <div class="col-md-6">
+            <strong>Property Manager</strong>
+            <p>{{ address.pmFirstName }} {{ address.pmLastName }}</p>
+            <p>Email: {{ address.email }}</p>
+          </div>
+          <hr>
+          <div class="col-md-6">
+            <p>Phone: {{ address.phoneNumber }}</p>
+            <p>Fax: {{ address.faxNumber }}</p>
+          </div>
+        </ng-template>
+        </div>
+      </div>
+
+      <!-- OCCUPANTS -->
+      <div class="panel panel-primary">
+        <div class="panel-heading">Occupant(s)</div>
+        <div class="panel-body" *ngFor="let coapplicant of coapplicants">
+          <!-- CO-APPLICANTS -->
+          <div class="col-md-12">
+            <h4>Co-Applicant(s)</h4>
+          </div>
+          <div class="col-md-6">
+            <strong>Name</strong>
+            <p>{{ coapplicant.firstName }} {{ coapplicant.lastName }}</p>
+
+            <strong>Relationship</strong>
+            <p>{{ coapplicant.relationship }}</p>
+          </div>
+          <div class="col-md-6">
+            <strong>Phone</strong>
+            <p>{{ coapplicant.phoneNumber }}</p>
+
+            <strong>Age</strong>
+            <p>{{ coapplicant.age }}</p>
+          </div>
+        </div>
+
+        <hr>
+        <!-- DEPENDETS -->
+        <div class="col-md-12">
+          <h4>Depenent(s)</h4>
+        </div>
+        <div class="panel-body" *ngFor="let dependent of dependents">
+          <div class="col-md-6">
+            <strong>Name</strong>
+            <p>{{ dependent.fullName }}</p>
+          </div>
+          <div class="col-md-6">
+            <strong>Phone</strong>
+            <p>{{ dependent.age }}</p>
+          </div>
+        </div>
+
+        <!--  PETS -->
+        <hr>
+        <div class="col-md-12">
+          <h4>Pet(s)</h4>
+        </div>
+        <div class="panel-body" *ngFor="let pet of pets">
+          <div class="col-md-6">
+            <strong>Name</strong>
+            <p>{{pet.name}}</p>
+          </div>
+          <div class="col-md-6">
+            <strong>Registration Number</strong>
+              <p>{{pet.registrationNumber}}</p>
+          </div>
+        </div>
+
+      </div>
+
+<!--
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">Pet(s)</div>
+      </div> -->
+
+      <!-- EMPLOYMENT INCOME -->
+      <div id="income" class="panel panel-primary">
+        <div class="panel-heading">Income Information</div>
+        <div class="panel-body" *ngFor="let employed of incomeemployment">
+          <div class="col-md-6">
+            <strong>Employer</strong>
+            <p>{{employed.companyName}}</p>
+
+            <strong>Employment Type</strong>
+            <p>{{employed.employmentType}}</p>
+
+            <strong>Supervisor</strong>
+            <p>{{employed.managerFullName}}</p>
+
+            <strong>Start Date</strong>
+            <p>{{ employed.startDate | date:'dd/MM/yyyy' }}</p>
+          </div>
+
+          <div class="col-md-6">
+            <strong>Position</strong>
+            <p>{{employed.position}}</p>
+
+            <strong>Salary</strong>
+            <p>{{employed.salary}}</p>
+
+            <strong>Phone</strong>
+            <p>{{employed.phoneNumber}}</p>
+
+            <strong>End Date</strong>
+            <p>N/A</p>
+          </div>
+        </div>
+
+        <hr>
+        <!-- SELF-EMPLOYED INCOME -->
+        <div class="panel-body" *ngFor="let selfEmployed of incomeselfemployed">
+          <div class="col-md-6">
+            <strong>Employer</strong>
+            <p>{{ selfEmployed.businessName }}</p>
+
+            <strong>ABN Number</strong>
+            <p>{{ selfEmployed.abnNumber }}</p>
+
+            <strong>Salary</strong>
+            <p>{{ selfEmployed.salary }}</p>
+          </div>
+
+          <div class="col-md-6">
+            <strong>Position</strong>
+            <p>{{ selfEmployed.position }}</p>
+
+            <strong>ACN Number</strong>
+            <p>{{ selfEmployed.acnNumber }}</p>
+
+            <strong>Start Date</strong>
+            <p>{{ selfEmployed.startDate | date:'dd/MM/yyyy' }}</p>
+          </div>
+        </div>
+
+
+
+        <hr>
+
+        <!-- RETIREMENT INCOME -->
+        <div class="panel-body" *ngFor="let retired of incomeretired">
+          <div class="col-md-6">
+            <strong>Pension Name</strong>
+            <p>{{ retired.pensionName }}</p>
+          </div>
+          <div class="col-md-6">
+            <strong>Pension No.</strong>
+            <p>{{ retired.pensionNumber }}</p>
+          </div>
+        </div>
+      </div>
+
+    <!--
+      <div class="panel panel-primary">
+        <div class="panel-heading">Self-Employed</div>\
+      </div> -->
+      <!-- <div class="panel panel-primary">
+        <div class="panel-heading">Income from Retirement</div>
+      </div> -->
+      <!-- EMERGENCY CONTACTS -->
+      <div class="panel panel-primary">
+        <div class="panel-heading">Emergency Contact</div>
+        <div class="panel-body" *ngFor="let emergency of emergency">
+          <div class="col-md-6">
+            <strong>Name</strong>
+            <p>{{emergency.fullName}}</p>
+
+            <strong>Address</strong>
+            <p>{{emergency.streetAddress}}
+               {{ emergency.unitNumber }}
+               {{emergency.city}}, {{ emergency.state }} {{ emergency.postCode }}
+            </p>
+          </div>
+          <div class="col-md-6">
+            <strong>Relationship</strong>
+            <p>{{emergency.relationship}}</p>
+
+            <strong>Phone</strong>
+            <p>{{ emergency.phoneNumber }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Side Panel -->
+    <div class="col-md-6">
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">Snapshot</div>
+        <div class="panel-body">
+          <div class="col-md-6">
+            <strong>Total Applicants</strong>
+            <p>6</p>
+
+            <strong>Prefered Move-in Date</strong>
+            <p>{{application.leaseStartDate | date:'dd/MMM/yyyy'}}</p>
+
+            <!-- <strong>Income Sources</strong>
+            <p>Banker Inc.</p>
+            <p>Google Inc.</p> -->
+
+            <hr>
+            <!-- Split button -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-warning">Update Application Status</button>
+              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- <span class="caret"></span> -->
+                <!-- <span class="sr-only">Toggle Dropdown</span> -->
+              </button>
+              <ul class="dropdown-menu">
+                <li (click)="approveApplication(application.id)"><a href="#"><span class="glyphicon glyphicon-ok"></span> Approve</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Request Information</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Deny</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-hdd"></span> Archive</a></li>
+              </ul>
+            </div>
+            <!-- <p>Current status: </p> -->
+
+
+            <!-- <div class="application-btns" *ngFor="let application of applications; let i=index">
+              <div class="btn-group">
+                <button type="button" class="btn btn-success" (click)="approveApplication(application.id)"><span class="glyphicon glyphicon-ok"></span> Approve
+                </button>
+
+                <button type="button" class="btn btn-default" (click)="approveApplication(application.id)"><span class="glyphicon glyphicon-envelope"></span> Message
+                </button>
+
+                <button type="button" class="btn btn-danger" (click)="approveApplication(application.id)"><span class="glyphicon glyphicon-remove"></span> Deny
+                </button>
+              </div>
+            </div> -->
+
+          </div>
+          <div class="col-md-6">
+            <strong>Willing to Pay</strong>
+            <p>${{application.willingToPay}}/mo</p>
+
+            <strong>Lease Length</strong>
+            <p>{{application.lengthOfLease}} months</p>
+
+            <!-- <strong>Amount</strong>
+            <p>$3,000/mo</p>
+            <p>$12,000/mo</p> -->
+
+            <hr>
+
+            <strong>Best Time to Call</strong>
+            <p>{{applicant.bestTimeToCall}}</p>
+
+            <p>Inspected Property?</p>
+
+          </div>
+          <div class="col-md-12">
+            <hr>
+            <h3>Notes</h3>
+          </div>
+          <div class="col-md-12 notes" *ngFor="let notes of applicationNotes">
+            <h6><strong>{{notes.createdAt | date: "EEEE, dd MMMM yyyy, HH:mm a"}}</strong></h6>
+            <p>{{notes.note}}</p>
+            <p>Completed: {{notes.is_completed}} • Notified User: {{notes.notify_user}}</p>
+            <hr />
+          </div>
+        </div>
+
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">Internal Notes</div>
+        <div class="panel-body">
+          <div class="col-md-12">
+            <form (ngSubmit)="addNote(application.id)">
+            <div class="form-group">
+              <textarea class="form-control" rows="3" id="note" [(ngModel)]="appNote.note" name="note">
+              </textarea>
+              <!-- <select>
+                <option value="volvo" name="false"></option>
+                <option value="saab" name="false"></option>
+              </select> -->
+              <label class="radio-inline">
+                <input type="radio" value="false" [(ngModel)]="appNote.notify_user" name="notify_user">Internal Note
+              </label>
+              <label class="radio-inline">
+                <input type="radio" value="true" [(ngModel)]="appNote.notify_user" name="notify_user">Notify Applicant
+              </label>
+            </div>
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add Note</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">Send to Owner</div>
+        <div class="panel-body">
+          <div class="col-md-12">
+            <div class="form-group">
+              <textarea class="form-control" rows="10" id="comment">{{applicant.firstName}} {{applicant.lastName}} a married couple aged 30 and 29, 2 kids aged 9 and 6, and 1 dog (Labrador). Looking to start {{application.leaseStartDate | date:'dd of MMMM'}}  for {{application.lengthOfLease}}  months at ${{application.willingToPay}} pw. She is not currently employed, currently receives family tax benefit from Centrelink of approx. $330 a fortnight (statement have been provided to confirm). He works for Border Express as a fleet driver earning $85k (has provided payslips to confirm). Overall looks pretty good and pending their rental reference request coming back clean I would recommend them.
+              </textarea>
+            </div>
+
+            <a href="mailto:tim@stancebranding.com?cc=jennyvat12@gmail.com&subject=Big%20News&body=Body-goes-here">
+            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-send"></span> Send to Owner</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
