@@ -9,8 +9,8 @@
                 </a>
             </li>
             <li>
-                <a href="/rental-checks">
-                    <i class="fa fa-archive fa-lg"></i> Rental Checks
+                <a href="/tenant-checks">
+                    <i class="fa fa-check fa-lg"></i> Tenant Checks
                 </a>
             </li>
             <li>
@@ -72,7 +72,7 @@
             <p>{{applicant.phoneNumber}}</p>
 
             <strong>Date of Birth</strong>
-            <p>{{applicant.dateOfBirth}}</p>
+            <p>{{applicant.dateOfBirth | date:'dd MMM yyyy'}}</p>
 
             <strong>Smoking Habits</strong>
             <p>{{applicant.smokingHabits}}</p>

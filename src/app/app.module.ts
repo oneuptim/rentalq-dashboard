@@ -11,7 +11,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArchivesComponent } from './archives/archives.component';
 import { DetailsComponent } from './details/details.component';
-import { RentalChecksComponent } from './rental-checks/rental-checks.component';
+import { TenantChecksComponent } from './tenant-checks/tenant-checks.component';
 import { FilesComponent } from './files/files.component';
 
 
@@ -23,7 +23,7 @@ import { FilesComponent } from './files/files.component';
     DashboardComponent,
     ArchivesComponent,
     DetailsComponent,
-    RentalChecksComponent,
+    TenantChecksComponent,
     FilesComponent
   ],
   imports: [
