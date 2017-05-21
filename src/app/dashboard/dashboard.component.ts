@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackandService } from '@backand/angular2-sdk';
 import { Router, RouterModule } from '@angular/router';
+import { LogoutComponent } from '../logout/logout.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,7 @@ export class DashboardComponent {
     description:string = 'Wonderful';
     public items:any[] = [];
     public applications:any[] = [];
+    auth_status:string = null;
     searchQuery: string;
     email: string = ''
     user = {};
@@ -20,6 +22,8 @@ export class DashboardComponent {
     extract = {};
     applicant = {};
     application = {};
+    ngShow:boolean = true;
+    isValid:boolean = false;
 
     constructor(private backand: BackandService, private router: Router) {
 
@@ -34,9 +38,18 @@ export class DashboardComponent {
              this.backand.query.get("pm_applications", {
                  "email": this.email // Using custom query to grab apps for this PM
              })
-             .then(data => {
-                 this.applications = data.data;
-                 console.log(data.data, "<<<<< ALL INFO ON APPLICATION")
+             .then(res => {
+               let sortedApplications = [];
+               for(let i = 1; i <= res.data.length; i++) {
+                  console.log(res.data[i].status)
+                 if(res.data[i].status != 'Archived') {
+                //  if(res.data[i].status !== 'Withdrawn' && res.data[i].status != 'Archived') {
+                   console.log(sortedApplications.push(res.data[i]), "Each push");
+                 }
+                 this.applications = sortedApplications;
+               }
+                //  this.applications = res.data;
+                 console.log(sortedApplications, "<<<<< ALL INFO ON APPLICATION")
              })
              .catch(error => { }) // END GRAB APPLICATION
          })
@@ -91,56 +104,12 @@ export class DashboardComponent {
       console.log(id, "<--- ID")
     }
 
-    // Update Emergency Object!
-    public approveApplication(id) {
-      console.log("Approve Application Method Entered");
-
-        this.backand.object.getOne("applicationInformation", id, {
-          "deep" : false })
-          .then(res => {
-            console.log(res.data, "<<<<<<<<<<<<<< Res Data coming from the fetched object!")
-
-            // Declare options
-            let options = {
-              returnObject: true
-            };
-
-            // Set data values
-            let status = "Approved"
-            let data = {
-             fullName: res.data.fullName,
-             relationship: res.data.relationship,
-             streetAddress: res.data.streetAddress,
-             unitNumber: res.data.unitNumber,
-             city: res.data.city,
-             state: res.data.state,
-             postCode: res.data.postCode,
-             phoneNumber: res.data.phoneNumber,
-             faxNumber: res.data.faxNumber,
-             status: status,
-             rentalCheck: res.data.rentalCheck,
-             user: res.data.user
-            };
-
-            console.log(data, "All the fields of the specified application object");
-            this.backand.object.update("applicationInformation", id, data, options)
-            .then(data => {
-             alert('Notification Successfully Sent to Tenant!');
-            })
-            .catch(error => {
-             console.log(error, '<===== data from backend save handler error')
-            })
-        })
-        .catch(err => {
-          console.log(err);
-        }); // End of user object fetch
-      } // End Appliction Approved Method
-
     public applicationDetails(id) {
       this.backand.object.getOne("users", id, {
         "deep" : true })
         .then(res => {
           this.applicant = res.data
+          this.router.navigate(['/details', id]);
           console.log(res.data, "FROM USER PROFILE NESTTTTT?")
       })
       .catch(err => {
@@ -208,6 +177,14 @@ export class DashboardComponent {
                 console.log(err)
             }
         );
+    }
+
+
+    public signOut() {
+        this.auth_status = null;
+        this.backand.signout();
+        this.router.navigate(['/'])
+        console.log("signout exited")
     }
 
 }

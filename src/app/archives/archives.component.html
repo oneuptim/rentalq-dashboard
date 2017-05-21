@@ -3,26 +3,29 @@
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
-            <li class="active">
-                <a href="/dashboard">
+            <li>
+              <a href="/dashboard">
                     <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                </a>
+                  </a>
             </li>
             <li>
-                <a href="/tenant-checks">
+              <a href="/tenant-checks">
                     <i class="fa fa-check fa-lg"></i> Tenant Checks
-                </a>
+                  </a>
             </li>
-            <li>
-                <a href="/archives">
+            <li class="active">
+              <a href="/archives">
                     <i class="fa fa-archive fa-lg"></i> Archives
-                </a>
+                  </a>
             </li>
             <li>
-                <a href="/profile">
+              <a href="/profile">
                     <i class="fa fa-user fa-lg"></i> Profile
-                </a>
+                  </a>
             </li>
+             <li class="signout" (click)="signOut()">
+            <i class="fa fa-power-off fa-lg"></i> Sign Out
+        </li>
         </ul>
     </div>
 </div>
@@ -49,9 +52,8 @@
                       <td>{{application.streetAddress}}</td>
                       <td>{{application.city}}</td>
                       <td>
-                        <span class="badge badge-pill badge-success">Processing</span><br>
-                        <span class="badge badge-pill badge-warning">On Hold</span><br>
-                        <span class="badge badge-pill badge-default">Withdrawn</span>
+                        <span class="badge badge-pill badge-default" *ngIf="application.status == 'Archived' ? true : false">Archived</span>
+                        <span class="badge badge-pill badge-default" *ngIf="application.status == 'Withdrawn' ? true : false">Withdrawn</span>
                       </td>
                       <td>
                         <p>Willing to pay ${{application.willingToPay}}/pw</p>

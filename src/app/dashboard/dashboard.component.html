@@ -4,25 +4,28 @@
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
             <li class="active">
-                <a href="/dashboard">
+              <a href="/dashboard">
                     <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                </a>
+                  </a>
             </li>
             <li>
-                <a href="/tenant-checks">
+              <a href="/tenant-checks">
                     <i class="fa fa-check fa-lg"></i> Tenant Checks
-                </a>
+                  </a>
             </li>
             <li>
-                <a href="/archives">
-                    <i class="fa fa-archive fa-lg"></i> Archives
-                </a>
+              <a href="/archives">
+              <i class="fa fa-archive fa-lg"></i> Archives
+            </a>
             </li>
-            <li>
-                <a href="/profile">
-                    <i class="fa fa-user fa-lg"></i> Profile
-                </a>
-            </li>
+          <li>
+            <a href="/profile">
+            <i class="fa fa-user fa-lg"></i> Profile
+          </a>
+        </li>
+        <li class="signout" (click)="signOut()">
+            <i class="fa fa-power-off fa-lg"></i> Sign Out
+        </li>
         </ul>
     </div>
 </div>
@@ -44,26 +47,30 @@
               </thead>
               <tbody>
                   <tr *ngFor="let application of applications">
-                      <th scope="row">{{application.createdAt | date:'dd/MMM/yyyy'}}</th>
+                      <th scope="row">{{application.createdAt | date:'dd MMM yyyy'}}</th>
                       <td>{{application.firstName}} {{application.lastName}}</td>
                       <td>{{application.streetAddress}}</td>
                       <td>{{application.city}}</td>
                       <td>
-                        <span class="badge badge-pill badge-success">Processing</span><br>
-                        <span class="badge badge-pill badge-warning">On Hold</span><br>
-                        <span class="badge badge-pill badge-default">Withdrawn</span>
+                        <!-- {{application.status}} - {{application.status == 'Processing' ? true : false}} -->
+                        <span class="badge badge-pill badge-pink" *ngIf="application.status == 'Approved' ? true : false">Approved</span>
+                        <span class="badge badge-pill badge-success" *ngIf="application.status == 'Processing' ? true : false">Processing</span>
+                        <span class="badge badge-pill badge-warning" *ngIf="application.status == 'On Hold' ? true : false">On Hold</span>
+                        <span class="badge badge-pill badge-default" *ngIf="application.status == 'Withdrawn' ? true : false">Withdrawn</span>
+                        <span class="badge badge-pill badge-danger" *ngIf="application.status == 'Denied' ? true : false">Denied</span>
                       </td>
                       <td>
                         <p>Willing to pay ${{application.willingToPay}}/pw</p>
                         <p>Lease Term: {{application.lengthOfLease}} months</p>
-                        <p>Makes $4,000/pw</p>
+                        <!--<p>Makes $4,000/pw</p>-->
                         <p>Move in: {{application.leaseStartDate | date:'dd/MMM/yyyy'}}</p>
-                        <p>Occupants: 6</p>
+                        <!--<p>Occupants: 6</p>-->
                       </td>
                       <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-primary" (click)="onSelect(application.id1)"><span class="glyphicon glyphicon-list"></span> Details</button>
-                          <button type="button" class="btn btn-default" (click)="archiveApplication(application.id1)"><i class="fa fa-archive fa-lg"></i> Archive {{application.id1}}</button>
+                          <!--Application for the specific ID {{application.id1}}-->
+                          <!-- <button type="button" class="btn btn-default" (click)="archiveApplication(application.id1)"><i class="fa fa-archive fa-lg"></i> Archive</button> -->
                         </div>
                       </td>
                   </tr>

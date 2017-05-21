@@ -257,7 +257,7 @@ body {
     box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 
-.dropdown-menu > li > a {
+.dropdown-menu > li {
     display: block;
     padding: 3px 20px;
     clear: both;
@@ -265,6 +265,7 @@ body {
     line-height: 1.42857143;
     color: #fff;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .dropdown-menu > li > a:hover {
@@ -282,4 +283,20 @@ h6 {
 
 .radio-inline {
   margin-top: 20px;
+}
+
+.panel-heading a:after {
+    font-family: 'fontawesome';
+    content: "\f07d";
+    float: right;
+    color: #323a45;
+}
+.panel-heading.accordion {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.signout {
+  position: absolute;
+  bottom: 0;
 }

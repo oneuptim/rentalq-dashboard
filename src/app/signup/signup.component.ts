@@ -29,10 +29,12 @@ export class SignupComponent implements OnInit {
       alert('Passwords should match');
       return;
     }
-    this.backand.signup(this.email, this.signUpPassword, this.confirmPassword, this.firstName, this.lastName)
+    this.backand.signup(this.firstName, this.lastName, this.email, this.signUpPassword, this.confirmPassword)
       .then((data: any) => {
+          console.log(data, "<== Data from sign up")
           alert('Sign up succeeded');
           this.email = this.signUpPassword = this.confirmPassword = this.firstName = this.lastName = '';
+          this.router.navigate(['/dashboard']);
       },
       (err: any) => {
           console.log(err)
