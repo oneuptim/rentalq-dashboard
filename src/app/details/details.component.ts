@@ -52,15 +52,6 @@ export class DetailsComponent implements OnInit {
 
     ngOnInit() {
 
-      // this.socket = 
-      this.backand.on('application_updated', function (data) {
-        //Get the 'items' object that have changed
-        console.log(data, "<<== SOCKETS.IO Updated Info");
-        console.log(data[2].Value, "<<<<< Data with the key")
-        this.socket = data[2].Value
-        console.log(this.socket, "socket")
-      });
-
       this.detailsId = this.route.snapshot.params['id'];
       // console.log(this.detailsId, "<=== DETAILS ID")
 
