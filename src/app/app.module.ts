@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArchivesComponent } from './archives/archives.component';
 import { DetailsComponent } from './details/details.component';
 import { TenantChecksComponent } from './tenant-checks/tenant-checks.component';
+import { ProfileComponent } from './profile/profile.component';
 import { FilesComponent } from './files/files.component';
 
 
@@ -26,6 +27,7 @@ import { FilesComponent } from './files/files.component';
     ArchivesComponent,
     DetailsComponent,
     TenantChecksComponent,
+    ProfileComponent,
     FilesComponent
   ],
   imports: [

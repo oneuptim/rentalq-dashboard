@@ -9,15 +9,13 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-    username:string = 'jack@test.com';
-    password:string = 'password';
+    username:string = '';
+    password:string = '';
     auth_type:string = "N/A";
     is_auth_error:boolean = false;
     auth_status:string = null;
     loggedInUser: string = '';
     email: string = ''
-
     oldPassword: string = '';
     newPassword: string = '';
     confirmNewPassword: string = '';

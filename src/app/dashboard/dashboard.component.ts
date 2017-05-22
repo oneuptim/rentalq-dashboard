@@ -181,10 +181,9 @@ export class DashboardComponent {
 
 
     public signOut() {
-        this.auth_status = null;
         this.backand.signout();
+        this.auth_status = null;
         this.router.navigate(['/'])
-        console.log("signout exited")
     }
 
 }

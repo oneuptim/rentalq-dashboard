@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArchivesComponent } from './archives/archives.component';
 import { DetailsComponent } from './details/details.component';
 import { TenantChecksComponent } from './tenant-checks/tenant-checks.component';
+import { ProfileComponent } from './profile/profile.component';
 import { FilesComponent } from './files/files.component';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
 	{ path: 'archives', component: ArchivesComponent },
 	{ path: 'details/:id', component: DetailsComponent },
 	{ path: 'tenant-checks', component: TenantChecksComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'signup', component: SignupComponent },
