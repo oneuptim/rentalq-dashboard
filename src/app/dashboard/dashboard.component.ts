@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackandService } from '@backand/angular2-sdk';
 import { Router, RouterModule } from '@angular/router';
-import { LogoutComponent } from '../logout/logout.component';
 
 @Component({
   selector: 'app-dashboard',

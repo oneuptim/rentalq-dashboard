@@ -21,6 +21,7 @@ export class TenantChecksComponent implements OnInit {
     user = {};
     loggedUser:string = '';
     tenantCheckObject = {};
+    auth_status:string = null;
 
     tenantCheck = {
       propertyAddress: '',
@@ -267,4 +268,13 @@ export class TenantChecksComponent implements OnInit {
         );
     }
 
+    public signOut() {
+        this.backand.signout();
+        this.auth_status = null;
+        this.router.navigate(['/'])
+    }
+
+    public submitRentalCheck(){
+
+    }
 }

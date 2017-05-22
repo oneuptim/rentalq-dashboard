@@ -10,7 +10,7 @@ import { Router, RouterModule } from '@angular/router';
 
   export class ArchivesComponent {
 
-      name:string = 'World';
+      auth_status:string = null;
       description:string = 'Wonderful';
       public items:any[] = [];
       public applications:any[] = [];
@@ -182,5 +182,10 @@ import { Router, RouterModule } from '@angular/router';
               }
           );
       }
-
+    public signOut() {
+        this.backand.signout();
+        this.auth_status = null;
+        this.router.navigate(['/'])
+    }
+    
   }

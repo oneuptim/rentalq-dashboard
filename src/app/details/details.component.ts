@@ -10,7 +10,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-
+    auth_status:string = null;
     public detailsId;
     name:string = 'World';
     description:string = 'Wonderful';
@@ -373,4 +373,9 @@ public addOwnersMessage(id) {
       // console.log(error, '<===== data from backend save handler')
      })
    }
+       public signOut() {
+        this.backand.signout();
+        this.auth_status = null;
+        this.router.navigate(['/'])
+    }
 }

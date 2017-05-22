@@ -9,7 +9,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 
   export class ProfileComponent {
-
+      auth_status:string = null;
       public items:any[] = [];
       public applications:any[] = [];
       searchQuery: string;
@@ -44,6 +44,10 @@ import { Router, RouterModule } from '@angular/router';
 
       constructor(private backand: BackandService, private router: Router) { } // CONSTRUCTOR
 
-  
+      public signOut() {
+        this.backand.signout();
+        this.auth_status = null;
+        this.router.navigate(['/'])
+    }
 
   }
