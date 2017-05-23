@@ -185,10 +185,10 @@
 
   <div class="panel-group" id="accordion">
     <div class="panel panel-info" *ngFor="let coapplicant of extractedCoApplicants; let i = index">
-      <div class="panel-heading">
+      <div class="panel-heading" (click)="displayCoApplicant(coapplicant.id)">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{i}}">
-          {{coapplicant.firstName}} {{coapplicant.lastNme}} (Co-Applicant)</a>
+          {{coapplicant.firstName}} {{coapplicant.lastName}} (Co-Applicant)</a>
         </h4>
       </div>
       <div id="collapse{{i}}" class="panel-collapse collapse">
@@ -198,30 +198,30 @@
           </div>
           <div class="col-md-6">
             <strong>Full Name</strong>
-            <p>{{applicant.firstName}} {{applicant.lastName}}</p>
+            <p>{{coapplicant.firstName}} {{coapplicant.lastName}}</p>
 
             <strong>Gender</strong>
-            <p>{{applicant.gender}}</p>
+            <p>{{coapplicant.gender}}</p>
 
             <strong>Marital Staus</strong>
-            <p>{{applicant.maritalStatus}}</p>
+            <p>{{coapplicant.maritalStatus}}</p>
 
           </div>
           <div class="col-md-6">
             <strong>Phone Number</strong>
-            <p>{{applicant.phoneNumber}}</p>
+            <p>{{coapplicant.phoneNumber}}</p>
 
             <strong>Date of Birth</strong>
-            <p>{{applicant.dateOfBirth | date:'dd MMM yyyy'}}</p>
+            <p>{{coapplicant.dateOfBirth | date:'dd MMM yyyy'}}</p>
 
             <strong>Smoking Habits</strong>
-            <p>{{applicant.smokingHabits}}</p>
+            <p>{{coapplicant.smokingHabits}}</p>
           </div>
 
           <div class="col-md-12">
             <h4>Applicant's Summary</h4>
             <p>
-              {{applicant.bio}}
+              {{coapplicant.bio}}
             </p>
             <hr />
           </div>
@@ -229,40 +229,42 @@
 
           <div class="col-md-12">
             <h4>Rental History</h4>
-          </div>
+          
 
-          <div *ngFor="let address of rentalhistory; let i=index">
-            <ng-template [ngIf]="i < 2">
-            <div class="col-md-6">
-              <h5>
-                {{address.streetAddress}} {{address.unitNumber}}
-              {{address.city }}, {{address.state}} {{address.postCode}}
-            </h5>
-            <hr>
-
-            <strong>Property Manager</strong>
-            <p>{{ address.pmFirstName }} {{ address.pmLastName }}</p>
-            <p>Email: {{ address.email }}</p>
-              <p>Phone: {{ address.phoneNumber }}</p>
-              <p>Fax: {{ address.faxNumber }}</p>
-            </div>
-            <div class="col-md-6">
-              <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Rental Check Complete</button>
+            <div class="row" *ngFor="let address of corentalhistory; let i=index">
+              <ng-template [ngIf]="i < 2">
+              <div class="col-md-6">
+                <h5>
+                  {{address.streetAddress}} {{address.unitNumber}}
+                {{address.city }}, {{address.state}} {{address.postCode}}
+              </h5>
               <hr>
-              <strong>Lived here</strong>
-              <p>{{ address.moveInDate | date:'dd/MM/yyyy' }} - {{ address.moveOutDate | date:'dd/MM/yyyy' }}</p>
-              <strong>Paid</strong>
-              <p>${{address.rentAmount}}/mo</p>
+
+              <strong>Property Manager</strong>
+              <p>{{ address.pmFirstName }} {{ address.pmLastName }}</p>
+              <p>Email: {{ address.email }}</p>
+                <p>Phone: {{ address.phoneNumber }}</p>
+                <p>Fax: {{ address.faxNumber }}</p>
+              </div>
+              <div class="col-md-6">
+                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Rental Check Complete</button>
+                <hr>
+                <strong>Lived here</strong>
+                <p>{{ address.moveInDate | date:'dd/MM/yyyy' }} - {{ address.moveOutDate | date:'dd/MM/yyyy' }}</p>
+                <strong>Paid</strong>
+                <p>${{address.rentAmount}}/mo</p>
+              </div>
+              <hr>
+            </ng-template>
             </div>
-            <hr>
-          </ng-template>
+
           </div>
 
 
           <div class="col-md-12">
             <h4>Occupants</h4>
           </div>
-          <div *ngFor="let coapplicant of coapplicants">
+          <div *ngFor="let coapplicant of cocoapplicants">
             <!-- CO-APPLICANTS -->
             <div class="col-md-12">
               <h4>Co-Applicant(s)</h4>
@@ -287,7 +289,7 @@
           <div class="col-md-12">
             <h4>Depenent(s)</h4>
           </div>
-          <div *ngFor="let dependent of dependents">
+          <div *ngFor="let dependent of codependents">
             <div class="col-md-6">
               <strong>Name</strong>
               <p>{{ dependent.fullName }}</p>
@@ -306,7 +308,7 @@
           <div class="col-md-12">
             <h4>Income Information</h4>
           </div>
-          <div *ngFor="let employed of incomeemployment">
+          <div *ngFor="let employed of coincomeemployment">
             <div class="col-md-6">
               <strong>Employer</strong>
               <p>{{employed.companyName}}</p>
@@ -337,7 +339,7 @@
           </div>
 
           <!-- SELF-EMPLOYED INCOME -->
-          <div *ngFor="let selfEmployed of incomeselfemployed">
+          <div *ngFor="let selfEmployed of coincomeselfemployed">
             <div class="col-md-6">
               <strong>Employer</strong>
               <p>{{ selfEmployed.businessName }}</p>
@@ -366,7 +368,7 @@
           <hr>
 
           <!-- RETIREMENT INCOME -->
-          <div *ngFor="let retired of incomeretired">
+          <div *ngFor="let retired of coincomeretired">
             <div class="col-md-6">
               <strong>Pension Name</strong>
               <p>{{ retired.pensionName }}</p>
@@ -384,7 +386,7 @@
           <div class="col-md-12">
             <h4>Emergency Contacts</h4>
           </div>
-          <div *ngFor="let emergency of emergency">
+          <div *ngFor="let emergency of coemergency">
             <div class="col-md-6">
               <strong>Name</strong>
               <p>{{emergency.fullName}}</p>

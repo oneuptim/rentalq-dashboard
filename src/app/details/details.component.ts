@@ -50,6 +50,17 @@ export class DetailsComponent implements OnInit {
 
     socket = null;
 
+    coapplicant = {};
+    cocoapplicants = [];
+    codependents = [];
+    copets = [];
+    corentalhistory = [];
+    codocuments = [];
+    coincomeemployment = [];
+    coincomeretired = [];
+    coincomeselfemployed = [];
+    coemergency = [];
+
     ngOnInit() {
 
       this.detailsId = this.route.snapshot.params['id'];
@@ -100,6 +111,12 @@ export class DetailsComponent implements OnInit {
                     "coapplicant_phone_number": phoneNumber
                 })
                 .then(res => {
+
+
+
+
+                  console.log(res.data[0].id, "res data ID")
+                  console.log(res.data, "RES DATA")
                   // console.log(res.data[0],"<<< res data");
                   sortedCoApplicants.unshift(res.data[0]);
                   // console.log(sortedCoApplicants, "sorted coapplicants after push")
@@ -369,4 +386,29 @@ public addOwnersMessage(id) {
         this.auth_status = null;
         this.router.navigate(['/'])
     }
+
+        // Display co-applicant
+        public displayCoApplicant(id) {
+          this.backand.object.getOne("users", id, {
+            "deep" : true })
+            .then(res => {
+              console.log(res.data, "Co-applicant data please?");
+              this.coapplicant = res.data;
+              this.cocoapplicants = res.data.coapplicants;
+              this.codependents = res.data.dependents;
+              this.copets = res.data.pets;
+              this.corentalhistory = res.data.rentalhistory;
+              this.codocuments = res.data.documents;
+              this.coincomeemployment = res.data.incomeemployment;
+              this.coincomeretired = res.data.incomeretired;
+              this.coincomeselfemployed = res.data.incomeselfemployed;
+              this.coemergency = res.data.emergency;
+
+            })
+            .catch(err => {
+              console.log(err);
+            }); // End of application to be archived object
+        } // End of archive method!
+
+
 }

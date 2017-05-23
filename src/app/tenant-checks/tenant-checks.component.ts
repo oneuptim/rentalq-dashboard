@@ -184,7 +184,7 @@ export class TenantChecksComponent implements OnInit {
         }); // End of user object fetch
       } // End Appliction Approved Method
 
-   public submittenantCheck() {
+   public submitRentalCheck() {
      console.log("Tenant Check Add method Entered");
      let options = {
         returnObject: true
@@ -229,44 +229,15 @@ export class TenantChecksComponent implements OnInit {
       // CREATE NEW TENANT CHECK
      this.backand.object.create("tenantCheck", data, options)
      .then(res => {
+      console.log(res, "<== New created object")
       this.tenantCheck.propertyAddress = this.tenantCheck.applicantID = this.tenantCheck.applicantsEmail = this.tenantCheck.agencyEmail = this.tenantCheck.isComplete = this.tenantCheck.moveInDate = this.tenantCheck.moveOutDate = this.tenantCheck.listedAsLesee = this.tenantCheck.numberOfOccupants = this.tenantCheck.breakLease = this.tenantCheck.rentAmount = this.tenantCheck.rentOnTime = this.tenantCheck.anyArrears = this.tenantCheck.anyPets = this.tenantCheck.petDamage = this.tenantCheck.petsApproved = this.tenantCheck.noticeToRemedy = this.tenantCheck.reasonToRemedy = this.tenantCheck.routineInspection = this.tenantCheck.lastInspectionCondition = this.tenantCheck.lawnsMaintained = this.tenantCheck.anyDamage = this.tenantCheck.bondRefunded = this.tenantCheck.reasonNoRefund = this.tenantCheck.leaveCleanTidy = this.tenantCheck.anyDisputes = this.tenantCheck.disputeDetails = this.tenantCheck.neighbourComplaints = this.tenantCheck.wouldRentAgain = this.tenantCheck.vacatingReason = this.tenantCheck.terminateTenancy = this.tenantCheck.additonalComments = this.tenantCheck.informationIsTrue = '';
 
       alert('Tenant Check Successfully Added');
-      console.log(res, "<== New created object")
       
      })
      .catch(error => {
      })
    }
-
-
-    public filterItems() {
-        // set q to the value of the searchbar
-        var q = this.searchQuery;
-
-        // if the value is an empty string don't filter the items
-        if (!q || q.trim() == '') {
-          return;
-        }
-        else{
-            q = q.trim();
-        }
-
-
-        let params = {
-            filter: [
-                this.backand.helpers.filter.create('name', this.backand.helpers.filter.operators.text.contains, q),
-            ],
-        }
-
-        this.backand.object.getList('todo', params)
-            .then((data: any) => {
-                this.items = data.data;
-            },
-            (err: any) => {
-            }
-        );
-    }
 
     public signOut() {
         this.backand.signout();
@@ -274,7 +245,22 @@ export class TenantChecksComponent implements OnInit {
         this.router.navigate(['/'])
     }
 
-    public submitRentalCheck(){
-
+    public saveRentalCheck() {
+      let options = {
+        return: true
+      }
+      let data = {
+        'propertyAddress': this.tenantCheck.propertyAddress,
+        'applicantID': this.tenantCheck.applicantID,
+        'applicantsEmail': this.tenantCheck.applicantsEmail,
+      }
+      this.backand.object.create("tenantCheck", data, options)
+      .then(res => {
+        console.log(res, "Saved objec")
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
+
 }

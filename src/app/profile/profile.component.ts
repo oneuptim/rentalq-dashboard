@@ -42,7 +42,11 @@ import { Router, RouterModule } from '@angular/router';
 
       }
 
-      constructor(private backand: BackandService, private router: Router) { } // CONSTRUCTOR
+      constructor(private backand: BackandService, private router: Router) { 
+
+
+
+      } // CONSTRUCTOR
 
       public signOut() {
         this.backand.signout();
@@ -50,4 +54,5 @@ import { Router, RouterModule } from '@angular/router';
         this.router.navigate(['/'])
     }
 
+  
   }
