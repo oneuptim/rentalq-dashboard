@@ -11,6 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class DetailsComponent implements OnInit {
     auth_status:string = null;
+    access_token:string = '';
     public detailsId;
     name:string = 'World';
     description:string = 'Wonderful';
@@ -61,17 +62,50 @@ export class DetailsComponent implements OnInit {
     coincomeselfemployed = [];
     coemergency = [];
 
-    ngOnInit() {
 
+    constructor(private backand: BackandService, private route: ActivatedRoute, private router: Router) {
+
+      this.backand.on('applicationinformation_updated', () => { 
+        this.fetchApplicationDetails();  
+        console.log('Sockets triggered');
+      });
+
+      backand.user.getUserDetails(false)
+        .then(res => {
+         this.loggedUser = res.data.userId
+         this.email = res.data.username
+         this.backand.object.getOne("users", this.loggedUser, {
+           "deep" : true })
+           .then(res => {
+             this.user = res.data
+             this.backand.query.get("pm_applications", {
+                 "email": this.email // Using custom query to grab apps for this PM
+             })
+             .then(res => {
+                 this.applications = res.data;
+             })
+             .catch(error => { }) // END GRAB APPLICATION
+         })
+         .catch(err => {
+          //  console.log(err);
+         }); // End of user object fetch
+         // Show user's applications in order of submission
+
+        })
+        .catch(err => {
+        //  console.log(err);
+        }); // End of user object fetch
+
+        //////////////////////////////////////////
+    } // CONSTRUCTOR
+
+    ngOnInit() {
+        this.fetchApplicationDetails();  
+    }
+
+    public fetchApplicationDetails() {
       this.detailsId = this.route.snapshot.params['id'];
       // console.log(this.detailsId, "<=== DETAILS ID")
-
-      this.backand.object.action.get("applicationInformation", "RealtimeDB", {})
-      .then(data => {
-        console.log(data, "<<<=== test data %%%%%%%%%%%%%%%%%%%%%%")
-        })
-      .catch(error => { })
-
       this.backand.object.getOne("applicationInformation", this.detailsId, {
         "deep": true })
         .then(res => {
@@ -148,37 +182,6 @@ export class DetailsComponent implements OnInit {
 
         })
     }
-
-    constructor(private backand: BackandService, private route: ActivatedRoute, private router: Router) {
-
-      backand.user.getUserDetails(false)
-        .then(res => {
-         this.loggedUser = res.data.userId
-         this.email = res.data.username
-         this.backand.object.getOne("users", this.loggedUser, {
-           "deep" : true })
-           .then(res => {
-             this.user = res.data
-             this.backand.query.get("pm_applications", {
-                 "email": this.email // Using custom query to grab apps for this PM
-             })
-             .then(res => {
-                 this.applications = res.data;
-             })
-             .catch(error => { }) // END GRAB APPLICATION
-         })
-         .catch(err => {
-          //  console.log(err);
-         }); // End of user object fetch
-         // Show user's applications in order of submission
-
-        })
-        .catch(err => {
-        //  console.log(err);
-        }); // End of user object fetch
-
-        //////////////////////////////////////////
-    } // CONSTRUCTOR
 
     // Update Emergency Object!
     public approveApplication(id) {
@@ -384,7 +387,9 @@ public addOwnersMessage(id) {
        public signOut() {
         this.backand.signout();
         this.auth_status = null;
+        this.access_token = '';
         this.router.navigate(['/'])
+        console.log(this.access_token)
     }
 
         // Display co-applicant

@@ -23,13 +23,45 @@ export class DashboardComponent {
     application = {};
     ngShow:boolean = true;
     isValid:boolean = false;
+    access_token:string = '';
 
     constructor(private backand: BackandService, private router: Router) {
+        
+      this.backand.on('applicationinformation_updated', () => { 
+        this.fetchApplications();  
+        console.log('Sockets triggered');
+      });
+
 
       backand.user.getUserDetails(false)
         .then(res => {
          this.loggedUser = res.data.userId
          this.email = res.data.username
+        })
+        .catch(err => {
+         console.log(err);
+        }); // End of user object fetch
+
+        //////////////////////////////////////////
+        this.searchQuery = '';
+        let that = this;
+        this.backand.on("items_updated",
+            (data: any) => {
+                    console.log("items_updated", data);
+                    let a = data as any[];
+                    let newItem = {};
+                    a.forEach((kv)=> newItem[kv.Key] = kv.Value);
+                    that.items.unshift(newItem);
+            }
+        );
+
+    } // CONSTRUCTOR
+
+    ngOnInit() {
+        this.fetchApplications();  
+    }
+
+    public fetchApplications () {
          this.backand.object.getOne("users", this.loggedUser, {
            "deep" : true })
            .then(res => {
@@ -56,26 +88,7 @@ export class DashboardComponent {
            console.log(err);
          }); // End of user object fetch
          // Show user's applications in order of submission
-
-        })
-        .catch(err => {
-         console.log(err);
-        }); // End of user object fetch
-
-        //////////////////////////////////////////
-        this.searchQuery = '';
-        let that = this;
-        this.backand.on("items_updated",
-            (data: any) => {
-                    console.log("items_updated", data);
-                    let a = data as any[];
-                    let newItem = {};
-                    a.forEach((kv)=> newItem[kv.Key] = kv.Value);
-                    that.items.unshift(newItem);
-            }
-        );
-
-    } // CONSTRUCTOR
+    }
 
     public postItem() {
         let item = {
@@ -182,6 +195,7 @@ export class DashboardComponent {
     public signOut() {
         this.backand.signout();
         this.auth_status = null;
+        this.access_token = '';
         this.router.navigate(['/'])
     }
 
