@@ -14,37 +14,37 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 export class DetailsComponent implements OnInit {
     auth_status:string = null;
     access_token:string = '';
-    public detailsId;
+    public detailsId:string;
     name:string = 'World';
     description:string = 'Wonderful';
     public items:any[] = [];
     public applications:any[] = [];
     searchQuery: string;
-    email: string = ''
-    user = {};
+    email:string = ''
+    user:object = {};
     loggedUser:string = '';
-    extract = {};
-    applicant = {};
-    coapplicants = [];
-    dependents = [];
-    pets = [];
-    rentalhistory = [];
-    documents = [];
-    incomeemployment = [];
-    incomeretired = [];
-    incomeselfemployed = [];
-    emergency = [];
-    utilities = [];
-    application = {};
-    applicationNotes = [];
+    extract:object = {};
+    applicant:object = {};
+    coapplicants:any[] = [];
+    dependents:any[] = [];
+    pets:any[] = [];
+    rentalhistory:any[] = [];
+    documents:any[] = [];
+    incomeemployment:any[] = [];
+    incomeretired:any[] = [];
+    incomeselfemployed:any[] = [];
+    emergency:any[] = [];
+    utilities:any[] = [];
+    application:object = {};
+    applicationNotes:any[] = [];
     notify_user:boolean;
     is_completed:boolean;
     appNote = {
       note: '',
       notify_user: 'false',
     };
-    err = '';
-    extractedCoApplicants = [];
+    err:string = '';
+    extractedCoApplicants:any[] = [];
     
     ownersMessage = {
       email: '',
@@ -53,16 +53,16 @@ export class DetailsComponent implements OnInit {
 
     socket = null;
 
-    coapplicant = {};
-    cocoapplicants = [];
-    codependents = [];
-    copets = [];
-    corentalhistory = [];
-    codocuments = [];
-    coincomeemployment = [];
-    coincomeretired = [];
-    coincomeselfemployed = [];
-    coemergency = [];
+    coapplicant:object = {};
+    cocoapplicants:any[] = [];
+    codependents:any[] = [];
+    copets:any[] = [];
+    corentalhistory:any[] = [];
+    codocuments:any[] = [];
+    coincomeemployment:any[] = [];
+    coincomeretired:any[] = [];
+    coincomeselfemployed:any[] = [];
+    coemergency:any[] = [];
 
 
     public options = {

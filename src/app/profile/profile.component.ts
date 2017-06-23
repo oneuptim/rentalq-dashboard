@@ -14,7 +14,7 @@ import { Router, RouterModule } from '@angular/router';
       public applications:any[] = [];
       searchQuery: string;
       email: string = ''
-      user = {};
+      user:object = {};
       agencyId: string = ''
       loggedUser:string = '';
 
@@ -44,8 +44,6 @@ import { Router, RouterModule } from '@angular/router';
 
       constructor(private backand: BackandService, private router: Router) { 
 
-
-
       } // CONSTRUCTOR
 
       public signOut() {
@@ -54,5 +52,4 @@ import { Router, RouterModule } from '@angular/router';
         this.router.navigate(['/'])
     }
 
-  
   }
