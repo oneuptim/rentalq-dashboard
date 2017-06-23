@@ -21,10 +21,10 @@ export class DetailsComponent implements OnInit {
     public applications:any[] = [];
     searchQuery: string;
     email:string = ''
-    user:object = {};
+    user:any = {};
     loggedUser:string = '';
-    extract:object = {};
-    applicant:object = {};
+    extract:any = {};
+    applicant:any = {};
     coapplicants:any[] = [];
     dependents:any[] = [];
     pets:any[] = [];
@@ -35,7 +35,7 @@ export class DetailsComponent implements OnInit {
     incomeselfemployed:any[] = [];
     emergency:any[] = [];
     utilities:any[] = [];
-    application:object = {};
+    application:any = {};
     applicationNotes:any[] = [];
     notify_user:boolean;
     is_completed:boolean;
@@ -53,7 +53,7 @@ export class DetailsComponent implements OnInit {
 
     socket = null;
 
-    coapplicant:object = {};
+    coapplicant:any = {};
     cocoapplicants:any[] = [];
     codependents:any[] = [];
     copets:any[] = [];

@@ -14,7 +14,7 @@ import { Router, RouterModule } from '@angular/router';
       public applications:any[] = [];
       searchQuery: string;
       email: string = ''
-      user:object = {};
+      user:any = {};
       agencyId: string = ''
       loggedUser:string = '';
 
