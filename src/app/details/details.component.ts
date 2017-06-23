@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { BackandService } from '@backand/angular2-sdk';
 import { ActivatedRoute } from '@angular/router'
 import { Router, RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
     auth_status:string = null;
@@ -63,9 +65,15 @@ export class DetailsComponent implements OnInit {
     coemergency = [];
 
 
-    constructor(private backand: BackandService, private route: ActivatedRoute, private router: Router) {
+    public options = {
+        position: ["bottom", "left"],
+        timeOut: 5000,
+        lastOnBottom: true
+    }
 
-      this.backand.on('applicationinformation_updated', () => { 
+    constructor(vcRef: ViewContainerRef, private backand: BackandService, private route: ActivatedRoute, private router: Router) {
+  
+      this.backand.on('applicationinPM_updates', () => { 
         this.fetchApplicationDetails();  
         console.log('Sockets triggered');
       });
@@ -217,8 +225,8 @@ export class DetailsComponent implements OnInit {
             // console.log(data, "All the fields of the specified application object");
             this.backand.object.update("applicationInformation", id, data, options)
             .then(data => {
-             alert('Notification Successfully Sent to Tenant!');
-             location.reload();
+            //  alert('Notification Successfully Sent to Tenant!');
+            //  location.reload();
             })
             .catch(error => {
             //  console.log(error, '<===== data from backend save handler error')
@@ -266,7 +274,7 @@ export class DetailsComponent implements OnInit {
               this.backand.object.update("applicationInformation", id, data, options)
               .then(data => {
                alert('Notification Successfully Sent to Tenant!');
-               location.reload();
+              //  location.reload();
               })
               .catch(error => {
               //  console.log(error, '<===== data from backend save handler error')
@@ -299,7 +307,7 @@ export class DetailsComponent implements OnInit {
               this.backand.object.update("applicationInformation", id, data, options)
               .then(res => {
                 alert('Application Successfully Archived!');
-                location.reload();
+                // location.reload();
               })
               .catch(err => {
                 console.log(err);
@@ -351,7 +359,7 @@ export class DetailsComponent implements OnInit {
       //  console.log(res.data)
       alert('Note Successfully Added');
        this.appNote.note = '';
-       location.reload();
+      //  location.reload();
       //  this.dismiss();
      })
      .catch(error => {
@@ -377,7 +385,7 @@ public addOwnersMessage(id) {
       alert('Owner\'s Message Successfully Sent');
        this.ownersMessage.email = '';
        this.ownersMessage.message = '';
-       location.reload();
+      //  location.reload();
       //  this.dismiss();
      })
      .catch(error => {
@@ -417,3 +425,6 @@ public addOwnersMessage(id) {
 
 
 }
+
+
+// backand sync --app rentalq --master 14380278-ad83-49e8-8bb9-b3008841162c --user bc267911-f9ab-11e6-992f-0e949b6db9c0 --folder ~/Desktop/rentalq-dashboard

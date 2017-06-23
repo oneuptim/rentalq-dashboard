@@ -13,6 +13,8 @@ import { DetailsComponent } from './details/details.component';
 import { TenantChecksComponent } from './tenant-checks/tenant-checks.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FilesComponent } from './files/files.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -28,10 +30,13 @@ import { FilesComponent } from './files/files.component';
     FilesComponent
   ],
   imports: [
+    // JasperoAlertsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule,
+    BrowserAnimationsModule,
   ],
   providers: [BackandService],
   bootstrap: [AppComponent]
