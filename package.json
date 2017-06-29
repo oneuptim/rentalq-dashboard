@@ -46,7 +46,7 @@
     "socket.io-client": "^1.7.3",
     "tether": "^1.4.0",
     "zone.js": "^0.8.12",
-    "html-webpack-plugin": "^2.29.0",    
+    "html-webpack-plugin": "^2.29.0",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"
   },
